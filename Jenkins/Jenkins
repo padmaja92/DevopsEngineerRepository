@@ -1,7 +1,10 @@
     pipeline {
         agent {
             docker {
-                image 'openjdk:21-jdk'
+                image 'openjdk:21-jdk'  // docker for Java 
+                image 'maven:3-alpine' // Using a lightweight Maven image
+
+
             }
         }
         stages {
