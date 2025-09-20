@@ -1,0 +1,30 @@
+    pipeline {
+        agent {
+            docker {
+                image 'openjdk:21-jdk'  // docker for Java 
+                image 'maven:3-alpine' // Using a lightweight Maven image
+
+
+            }
+        }
+        stages {
+            stage('Build') {
+                steps {
+                    sh 'java -version' // Verify Java version
+                    sh 'mvn -version' // Example build command
+                }
+            }
+            stage('Test') {
+                steps {
+                    sh 'mvn clean install' // Example test command
+                }
+            }
+            
+             stage('Build') {
+                steps {
+                    sh 'mvn clean Build' // Example test command
+                }
+            }
+            
+        }
+    }
