@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh 'node --version'
       }
-
+  }
       stage('DB') {
       agent {
         docker { image 'mysql:latest' }
@@ -24,7 +24,6 @@ pipeline {
       steps {
        echo 'Steps to configure SQL DB and queries'
       }
-
     }
   }
 }
