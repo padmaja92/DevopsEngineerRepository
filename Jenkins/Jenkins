@@ -1,0 +1,20 @@
+    pipeline {
+        agent {
+            docker {
+                image 'openjdk:21-jdk'
+            }
+        }
+        stages {
+            stage('Build') {
+                steps {
+                    sh 'java -version' // Verify Java version
+                    sh 'mvn clean install' // Example build command
+                }
+            }
+            stage('Test') {
+                steps {
+                    sh 'mvn test' // Example test command
+                }
+            }
+        }
+    }
