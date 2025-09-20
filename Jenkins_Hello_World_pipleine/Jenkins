@@ -8,7 +8,7 @@
             }
         }
         stages {
-            stage('Build') {
+            stage('Pre-requisites') {
                 steps {
                     sh 'java -version' // Verify Java version
                     sh 'mvn -version' // Example build command
