@@ -1,29 +1,35 @@
 pipeline {
-  agent none
-  stages {
-    stage('Back-end') {
-      agent {
-        docker { image 'maven:3.8.1-adoptopenjdk-11' }
-      }
-      steps {
-        sh 'mvn --version'
-      }
+    agent none // No global agent, stages define their own
+    stages {
+        stage('Back-end') {
+            agent {
+                dockerContainer { // Use dockerContainer instead of docker
+                    image 'maven:3.8.1-adoptopenjdk-11'
+                }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Front-end') {
+            agent {
+                dockerContainer { // Use dockerContainer instead of docker
+                    image 'node:16-alpine'
+                }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
+        stage('DB') {
+            agent {
+                dockerContainer { // Use dockerContainer instead of docker
+                    image 'mysql:latest'
+                }
+            }
+            steps {
+                echo 'Steps to configure SQL DB and queries'
+            }
+        }
     }
-    stage('Front-end') {
-      agent {
-        docker { image 'node:16-alpine' }
-      }
-      steps {
-        sh 'node --version'
-      }
-  }
-      stage('DB') {
-      agent {
-        docker { image 'mysql:latest' }
-      }
-      steps {
-       echo 'Steps to configure SQL DB and queries'
-      }
-    }
-  }
 }
